@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    .box{
+        width:100px;
+        height:100px;
+        float: left;
+        font-size:30px;
+        line-height: 100px;
+        text-align: center;
+        font-weight: 600;
+        color: #cccccc;
+    }
+    .son{
+        height:100px;
+        float: left;
+        font-size:30px;
+        line-height: 100px;
+        text-align: center;
+        font-weight: 600;
+        color: #cccccc;
+        margin-left: 5px;
+    }
+    span{
+        color: #fff;
+    }
+    section{
+        width:615px;
+        height:100px;
+        background-color:lavender;
+        margin: 0 auto;
+        border-radius: 20px;
+        margin-top: 100px;
+    }
+    span:last-child{
+        color: #000;
+    }
+</style>
+<body>
+    <section>
+        <div class="son">热卖促销倒计时</div>
+        <div class="box"><span></span>天</div>
+        <div class="box"><span></span>时</div>
+        <div class="box"><span></span>分</div>
+        <div class="box"><span></span>秒</div>
+        <span></span>
+    </section>
+</body>
+</html>
+<script>
+    move();
+//    djs(3);
+    function move1(){
+        let box = document.querySelectorAll('span');
+        setInterval(function () {
+            let date = new Date(2017,11,25,00,00,00);
+            let now = new Date();
+            let time = Math.floor((date.getTime()-now.getTime())/1000);
+            let day = Math.floor(time/60/60/24);
+            let hour = parseInt(time/60/60%24);
+            let minute = parseInt(time/60%60);
+                let seconds = parseInt(time%60)
+                box[3].innerText = seconds;
+            },1000)
+    }
+    function djs(e){
+        e = e*60;
+        setInterval(function(){
+            e--;
+            let minute = parseInt(e/60%60);
+            let seconds = parseInt(e%60);
+            box[4].innerText = `${minute}:${seconds}`;
+        },1000)
+    }
+    function move(){
+        let box = document.querySelectorAll('span');
+        let date = new Date();
+        date.setMinutes(date.getMinutes() + 10);
+        setInterval(function () {
+            let now = new Date();
+            let time = (date.getTime()-now.getTime())/1000;
+            let minute = parseInt(time / 60 % 60);
+            let seconds = parseInt(time % 60);
+            box[2].innerText = minute;
+            box[3].innerText = seconds;
+        },1000)
+    }
+</script>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <canvas width="300" height="400"></canvas>
+</body>
+</html>
+<script>
+    let canvas = document.querySelector('canvas');
+    let ctx = canvas.getContext('2d');
+    const PI = Math.PI;
+    let a = 0;
+    let t = setInterval(function(){
+        a++;
+        let dge = 2*Math.PI/100;
+        let r = 75;
+        ctx.clearRect(50,50,150,150);
+        ctx.beginPath();
+        ctx.moveTo(215,125);
+        ctx.arc(140,125,r,0,dge*a);
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = 'aqua';
+        ctx.stroke();
+        ctx.closePath();
+        ctx.font = '24px San Francisco';
+        ctx.strokeText(`${a}%`,120,130);
+        if(a == 100){
+            clearInterval(t);
+        }
+    },100)
+</script>
